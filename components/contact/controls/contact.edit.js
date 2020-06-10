@@ -11,7 +11,7 @@ async function editContact(req, res, next) {
         if (error) return res.status(400).json({ message: error.message.replace(/"/g, '') });
         value.editBy = req.userData.id;
 
-        const editedContact = await Place.findOneAndUpdate({ _id: contactId }, value, { new: true });
+        const editedContact = await Contact.findOneAndUpdate({ _id: contactId }, value, { new: true });
 
         return res.status(200).json({ editedContact });
     } catch (error) {

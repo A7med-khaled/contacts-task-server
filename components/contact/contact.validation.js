@@ -1,6 +1,5 @@
 const joi = require('@hapi/joi');
 
-
 const contactSchema = {
     name: joi.string()
         .required()
@@ -20,9 +19,21 @@ const contactSchema = {
         .message('Enter a valid notes'),
 };
 
-
+const paginationSchema = {
+    pageNo: joi.string()
+        .required()
+        .trim()
+        .pattern(/^[0-9]*$/)
+        .message('Enter a valid number'),
+    limitNo: joi.string()
+        .required()
+        .trim()
+        .pattern(/^[0-9]*$/)
+        .message('Enter a valid number')
+};
 
 module.exports = {
     addContact: joi.object(contactSchema),
-    editContact: joi.object(contactSchema)
+    editContact: joi.object(contactSchema),
+    pagination: joi.object(paginationSchema)
 }
