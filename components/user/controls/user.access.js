@@ -1,6 +1,6 @@
 const { login: loginValidationSchema } = require('../user.validation');
 const User = require('../user.model');
-const securityModule = require('../../../security');
+
 
 async function access(req, res, next) {
 

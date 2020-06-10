@@ -6,9 +6,16 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+const Config = require('./config');
+const { userAPI } = require('./components/user');
 
 const PORT = process.env.PORT || 3000;
 
+// database connection
+mongoose.connect(Config.dbURI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false }, () => {
+    // seed the application with pre defined data
+    console.log('DB Connected To ' + Config.dbURI)
+});
 
 // cors
 app.use(cors());
@@ -23,6 +30,10 @@ app.use(morgan('tiny'));
 app.set('port', PORT);
 
 app.use('/api', userAPI);
+
+const { User } = require('./components/user');
+
+
 
 
 const server = require('http').createServer(app);
