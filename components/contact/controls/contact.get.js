@@ -10,8 +10,8 @@ async function getContent(req, res, next) {
         const queryLimitNo = Number.parseInt(value.limitNo);
         const querySkipNo = Number.parseInt(value.pageNo) * queryLimitNo;
 
-        const contactCount = await Contact.find({ name: searchRegexExp, categoryId }).countDocuments();
-        const contact = await Contact.find()
+        const contactCount = await Contact.find({}).countDocuments();
+        const contact = await Contact.find({}, '-createdAt -updateAt -createdBy -__v')
             .skip(querySkipNo)
             .limit(queryLimitNo);
 

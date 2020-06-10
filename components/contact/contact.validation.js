@@ -34,6 +34,5 @@ const paginationSchema = {
 
 module.exports = {
     addContact: joi.object(contactSchema),
-    editContact: joi.object(contactSchema),
     pagination: joi.object(paginationSchema)
 }

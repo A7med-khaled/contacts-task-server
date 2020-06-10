@@ -22,7 +22,7 @@ userSchema.methods.isPasswordValid = async function(password) {
 };
 
 userSchema.methods.signToken = function() {
-    return jwt.sign({ _id: this._id, role: this.role }, config.JWTsecret, { expiresIn: `${config.TokenDurationInHours}h` });
+    return jwt.sign({ _id: this._id, role: this.role, username: this.username }, config.JWTsecret, { expiresIn: `${config.TokenDurationInHours}h` });
 };
 
 userSchema.pre('save', function(next) {

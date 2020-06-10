@@ -8,6 +8,7 @@ const morgan = require('morgan');
 
 const Config = require('./config');
 const { userAPI } = require('./components/user');
+const { contactAPI } = require('./components/contact');
 
 const PORT = process.env.PORT || 3000;
 
@@ -30,6 +31,7 @@ app.use(morgan('tiny'));
 app.set('port', PORT);
 
 app.use('/api', userAPI);
+app.use('/api', contactAPI);
 
 const { User } = require('./components/user');
 

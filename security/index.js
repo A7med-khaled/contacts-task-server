@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const Config = require('../config')
 
 function isRoleAllowed(req, allowedRoles) {

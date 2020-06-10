@@ -9,9 +9,15 @@ async function editContact(req, res, next) {
 
         const { error, value } = addContactValidationSchema.validate(req.body);
         if (error) return res.status(400).json({ message: error.message.replace(/"/g, '') });
-        value.editBy = req.userData.id;
+
+        const checkExist = await Contact.findOne({ phone: value.phone })
+        if (checkExist && checkExist.id !== contactId) return res.status(400).json({ message: 'this phone is already exsist' });
+
+        value.editBy = req.userData._id;
 
         const editedContact = await Contact.findOneAndUpdate({ _id: contactId }, value, { new: true });
+        if (!editedContact) return res.status(400).json({ message: 'Invalid contact' })
+
 
         return res.status(200).json({ editedContact });
     } catch (error) {
