@@ -22,9 +22,10 @@ app.use(morgan('tiny'));
 // set port
 app.set('port', PORT);
 
+app.use('/api', userAPI);
 
 
 const server = require('http').createServer(app);
-server.listen(app.get('port'), function () {
+server.listen(app.get('port'), function() {
     console.log(`App Running on Port ${app.get('port')}`);
 });
