@@ -8,6 +8,7 @@ var Contact = mongoose.Schema({
     notes: { type: String, required: true },
 
     createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    editBy: { type: Schema.Types.ObjectId, ref: 'User' },
 
     createdAt: { type: Date, required: true, default: Date.now },
     updateAt: { type: Date, required: true, default: Date.now },
